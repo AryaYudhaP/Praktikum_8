@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Dialog</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #download-dialog {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+    }
+    #progress-bar {
+        width: 200px;
+        height: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 10px auto;
+    }
+    #progress {
+        width: 0;
+        height: 100%;
+        background-color: #007bff;
+    }
+    #status {
+        margin-top: 10px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <button id="start-download">Start Download</button>
+
+    <div id="download-dialog">
+        <h2>Downloading...</h2>
+        <div id="progress-bar">
+            <div id="progress"></div>
+        </div>
+        <div id="status">0%</div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#start-download').click(function() {
+                // Show download dialog
+                $('#download-dialog').show();
+
+                // Simulate download progress
+                var progress = 0;
+                var interval = setInterval(function() {
+                    progress += Math.random() * 10;
+                    $('#progress').width(progress + '%');
+                    $('#status').text(Math.round(progress) + '%');
+
+                    // Finish download when progress reaches 100%
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        $('#download-dialog').hide();
+                        alert('Download complete!');
+                    }
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

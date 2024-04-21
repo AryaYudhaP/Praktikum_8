@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery Menu</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #menu {
+        margin-top: 50px;
+    }
+    #menu ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #menu ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    #menu ul li a {
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    #menu ul li a:hover {
+        background-color: #ccc;
+    }
+    .content {
+        margin-top: 20px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="#" class="menu-link" data-target="home">Beranda</a></li>
+            <li><a href="#" class="menu-link" data-target="about">Tentang</a></li>
+            <li><a href="#" class="menu-link" data-target="services">Layanan</a></li>
+            <li><a href="#" class="menu-link" data-target="contact">Kontak</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div id="home" class="menu-content">
+            <h2>Beranda</h2>
+            <p>Selamat Datang di Website Kami !</p>
+        </div>
+        <div id="about" class="menu-content" style="display: none;">
+            <h2>Tentang</h2>
+            <p>Tentang kami lebih lanjut</p>
+        </div>
+        <div id="services" class="menu-content" style="display: none;">
+            <h2>Layanan</h2>
+            <p>Beberapa contoh layanan dari kami</p>
+        </div>
+        <div id="contact" class="menu-content" style="display: none;">
+            <h2>Kontak</h2>
+            <p>Hubungi kami untuk lanjut</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Hide all content initially
+            $('.menu-content').hide();
+
+            // Show content when menu link is clicked
+            $('.menu-link').click(function(e) {
+                e.preventDefault();
+                var target = $(this).data('target');
+                $('.menu-content').hide();
+                $('#' + target).show();
+            });
+        });
+    </script>
+</body>
+</html>
